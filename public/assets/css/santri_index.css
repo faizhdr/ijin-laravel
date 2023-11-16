@@ -1,0 +1,59 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700&display=swap');
+
+body {
+    background-color: #EAEBEC;
+}
+
+.navbar {
+    max-width: 500px;
+    border-radius: 20px;
+    background-color: #086F83;
+    color: #FFFFFF;
+}
+
+.img img {
+    max-width: 200px;
+}
+
+.title h3 {
+    font-size: 20px;
+}
+
+.card {
+    max-width: 300px;
+    color: #086F83;
+    border-radius: 10px;
+    font-family: Poppins;
+}
+
+.card img {
+    width: 50px;
+}
+
+a {
+    width: 250px;
+    background-color: #FFFFFF;
+    border-radius: 5px;
+    color: #086F83;
+}
+
+a:hover {
+    text-decoration: none;
+    color: #086F83;
+}
+
+button {
+    color: #000000;
+    border: none;
+    background-color: #086F83;
+}
+
+button:hover {
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button img {
+    width: 30px;
+}
+
