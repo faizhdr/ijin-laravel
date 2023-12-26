@@ -13,7 +13,7 @@
     <meta name="description" content="" />
 
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="{{ asset('assets/img/favicon/favicon.png') }}" />
+    <link rel="icon" type="image/x-icon" href="{{ asset('assets/img/favicon/icon.svg') }}" />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -71,42 +71,13 @@
 
                 <ul class="menu-inner py-1">
 
+                    @if (Auth::user()->role == 'direktur')
+                        @include('layouts.sidebar_partials.direktur_sidebar')
+                    @endif
 
-                    <li class="menu-header small text-uppercase">
-                        <span class="menu-header-text">Menu</span>
-                    </li>
-
-                    <li class="menu-item {{ $menuDashboard ?? '' }}">
-                        <a href="{{ route('main.index') }}" class="menu-link">
-                            <i class="menu-icon tf-icons bx bx-home"></i>
-                            <div data-i18n="Account Settings">Dashboard</div>
-                        </a>
-                    </li>
-
-                    <li class="menu-item {{ $menuPost ?? '' }}">
-                        <a href="{{ route('admin.index') }}" class="menu-link">
-                            <i class="menu-icon tf-icons bx bx-spreadsheet"></i>
-                            <div data-i18n="Account Settings">Perizinan</div>
-                        </a>
-                    </li>
-
-                    <li class="menu-header small text-uppercase">
-                        <span class="menu-header-text">Jurusan</span>
-                    </li>
-
-                    <li class="menu-item {{ $menuPPL ?? '' }}">
-                        <a href="{{ route('ppl_class.index') }}" class="menu-link">
-                            <i class="menu-icon tf-icons bx bx-code-alt"></i>
-                            <div data-i18n="Account Settings">PPL</div>
-                        </a>
-                    </li>
-
-                    <li class="menu-item {{ $menuDM ?? '' }}">
-                        <a href="{{ route('dm_class.index') }}" class="menu-link">
-                            <i class="menu-icon tf-icons bx bx-bar-chart-alt-2"></i>
-                            <div data-i18n="Account Settings">DM</div>
-                        </a>
-                    </li>
+                    @if (Auth::user()->role == 'dosen')
+                        @include('layouts.sidebar_partials.dosen_sidebar')
+                    @endif
 
                 </ul>
             </aside>
@@ -133,14 +104,18 @@
                             <!-- User -->
                             
                             <li>
-                                <form onsubmit="return confirm('are you sure?')" action="{{ route('logout') }}"
+                                {{-- <form onsubmit="return confirm('are you sure?')" action="{{ route('logout') }}"
                                     method="POST">
                                     @csrf
                                     <button type="submit" class="dropdown-item">
                                         <i class="bx bx-power-off"></i>
                                         <span class="align-middle">Log Out</span>
                                     </button>
-                                </form>
+                                </form> --}}
+                                <a href="{{ url('logout') }}">
+                                    <i class="bx bx-power-off"></i>
+                                    <span class="align-middle">Log Out</span>
+                                </a>
                                 {{-- <a class="dropdown-item" href="auth-login-basic.html">
                 <i class="bx bx-power-off me-2"></i>
                 <span class="align-middle">Log Out</span>
