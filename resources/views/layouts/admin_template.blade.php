@@ -35,8 +35,10 @@
     <link rel="stylesheet" href="{{ asset('assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css') }}" />
 
     <link rel="stylesheet" href="{{ asset('assets/vendor/libs/apex-charts/apex-charts.css') }}" />
-
-
+    <!-- DataTables -->
+    <link rel="stylesheet" href="{{ asset('plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
     <!-- Page CSS -->
 
     <!-- Helpers -->
@@ -55,15 +57,10 @@
 
             <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
                 <div class="app-brand demo">
-                    <a href="#" class="app-brand-link">
-                        <img src="{{ asset('assets/img/favicon/favicon.png') }}" alt="logo"
+                    <a href="{{ url('home') }}" class="app-brand-link">
+                        <img src="{{ asset('assets/img/logo/logo.svg') }}" alt="logo"
                             style="max-width: 150px">
                         {{-- <span class="app-brand-text menu-text fw-bolder fs-3 ms-2">Perizinan</span> --}}
-                    </a>
-
-                    <a href="javascript:void(0);"
-                        class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
-                        <i class="bx bx-chevron-left bx-sm align-middle"></i>
                     </a>
                 </div>
 
@@ -71,7 +68,7 @@
 
                 <ul class="menu-inner py-1">
 
-                    @if (Auth::user()->role == 'direktur')
+                    @if (Auth::user()->role == 'direktur' || Auth::user()->role == 'alumni')
                         @include('layouts.sidebar_partials.direktur_sidebar')
                     @endif
 
@@ -188,6 +185,66 @@
 
     <script src="https://cdn.ckeditor.com/ckeditor5/38.1.1/classic/ckeditor.js"></script>
 
+    <!-- jQuery -->
+    <script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
+    <!-- Bootstrap 4 -->
+    <script src="{{ asset('plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+
+    <!-- DataTables  & Plugins -->
+    <script src={{ asset('plugins/datatables/jquery.dataTables.js') }}></script>
+    <script src={{ asset('plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}></script>
+    <script src={{ asset('plugins/datatables-responsive/js/dataTables.responsive.min.js') }}></script>
+    <script src={{ asset('plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}></script>
+    <script src={{ asset('plugins/datatables-buttons/js/dataTables.buttons.min.js') }}></script>
+    <script src={{ asset('plugins/datatables-buttons/js/buttons.bootstrap4.min.js') }}></script>
+    <script src={{ asset('plugins/datatables-buttons/js/buttons.html5.js') }}></script>
+    <script src={{ asset('plugins/datatables-buttons/js/buttons.print.js') }}></script>
+    <script src={{ asset('plugins/datatables-buttons/js/buttons.colVis.min.js') }}></script>
+    <script src={{ asset('plugins/jszip/jszip.min.js') }}></script>
+    <script src={{ asset('plugins/pdfmake/pdfmake.min.js') }}></script>
+    <script src={{ asset('plugins/pdfmake/vfs_fonts.js') }}></script>
+
+    <script>
+        $(function() {
+            $("#example1").DataTable({
+                "responsive": true,
+                "lengthChange": false,
+                "autoWidth": false,
+                "searching": false,
+
+                //         {extend: 'pdfHtml5',
+                //                 orientation: 'landscape',
+                //                 pageSize: 'LEGAL', customize: function(doc) {
+                //   doc.content[1].margin = [ 100, 0, 100, 0 ] //left, top, right, bottom
+                // }} , 
+            }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+            $("#example2").DataTable({
+                "responsive": true,
+                "lengthChange": false,
+                "autoWidth": false,
+                "searching": false,
+                "buttons": ["copy", "excel", "pdf", "print", "colvis"]
+
+                //         {extend: 'pdfHtml5',
+                //                 orientation: 'landscape',
+                //                 pageSize: 'LEGAL', customize: function(doc) {
+                //   doc.content[1].margin = [ 100, 0, 100, 0 ] //left, top, right, bottom
+                // }} , 
+            }).buttons().container().appendTo('#example2_wrapper .col-md-6:eq(0)');
+            $("#example3").DataTable({
+                "responsive": true,
+                "lengthChange": false,
+                "autoWidth": false,
+                "buttons": ["colvis"]
+
+                //         {extend: 'pdfHtml5',
+                //                 orientation: 'landscape',
+                //                 pageSize: 'LEGAL', customize: function(doc) {
+                //   doc.content[1].margin = [ 100, 0, 100, 0 ] //left, top, right, bottom
+                // }} , 
+            }).buttons().container().appendTo('#example3_wrapper .col-md-6:eq(0)');
+        });
+    </script>
     @stack('scriptjs')
 </body>
 

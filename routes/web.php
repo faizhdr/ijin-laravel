@@ -9,13 +9,11 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LayoutController;
 use App\Http\Controllers\SantriController;
-
-
-
 // Route::get('/', function () {
 //     return view('pages.santri.form');
 // });
 
+use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\WhatsappController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DataTransferController;
@@ -34,6 +32,10 @@ Route::group(['middleware' => ['auth']], function(){
     Route::group(['middleware' => ['direktur']], function(){
 
         Route::resource('posts', PostController::class);
+
+        Route::get('/show', [SantriController::class, 'show']);
+
+        Route::get('/form', [SantriController::class, 'create']);
     
         Route::get('/whatsapp', [WhatsappController::class, 'index']);
 
@@ -51,10 +53,14 @@ Route::group(['middleware' => ['auth']], function(){
 
         //Dashboard
         Route::resource('main', DashboardController::class);
+
+        Route::resource('user', RegisterController::class);
+
     });
 
     Route::group(['middleware' => ['dosen']], function(){
-        Route::resource('posts', PostController::class);
+        //Dashboard
+        Route::resource('main', DashboardController::class);
 
         Route::resource('ppl_class', PPLController::class);
 
@@ -66,8 +72,32 @@ Route::group(['middleware' => ['auth']], function(){
 
     });
 
-    Route::group(['middleware' => ['santri']], function(){
+    // Route::group(['middleware' => ['alumni']], function(){
 
+    //     Route::resource('posts', PostController::class);
+    
+    //     Route::get('/whatsapp', [WhatsappController::class, 'index']);
+
+    //     Route::get('/filter', [PostController::class, 'filter']);
+
+    //     Route::get('/filterppl', [PPLController::class, 'filter']);
+
+    //     Route::get('/filterdm', [DMController::class, 'filter']);
+
+    //     Route::resource('admin', AdminController::class);
+
+    //     Route::resource('ppl_class', PPLController::class);
+
+    //     Route::resource('dm_class', DMController::class);
+
+    //     //Dashboard
+    //     Route::resource('main', DashboardController::class);
+
+    //     Route::resource('user', RegisterController::class);
+    // });
+
+    Route::group(['middleware' => ['santri']], function(){
+        Route::resource('posts', PostController::class);
 
         Route::get('/show', [SantriController::class, 'show']);
 
@@ -76,9 +106,13 @@ Route::group(['middleware' => ['auth']], function(){
     });
 
     Route::group(['middleware' => ['user-access']], function(){
+        Route::resource('posts', PostController::class);
 
     });
+
+
 });
+
 
 // Route::middleware(['auth'])->group(function () {
 

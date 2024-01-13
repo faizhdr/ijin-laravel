@@ -1,4 +1,15 @@
 <li class="menu-header small text-uppercase">
+    <span class="menu-header-text">Menu</span>
+</li>
+
+<li class="menu-item {{ $menuDashboard ?? '' }}">
+    <a href="{{ route('main.index') }}" class="menu-link">
+        <i class="menu-icon tf-icons bx bx-home"></i>
+        <div data-i18n="Account Settings">Dashboard</div>
+    </a>
+</li>
+
+<li class="menu-header small text-uppercase">
     <span class="menu-header-text">Jurusan</span>
 </li>
 

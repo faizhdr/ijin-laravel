@@ -16,7 +16,7 @@ class DashboardController extends Controller
     public function index()
     {
         $menuDashboard = 'active';
-        $users = User::all();
+        $users = User::where('role', 'santri')->get();
 
         return view('pages.main.index', compact('menuDashboard','users'));
     }

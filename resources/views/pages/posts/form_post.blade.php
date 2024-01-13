@@ -48,7 +48,6 @@
                                     <div class="error" style="position:absolute">{{ $message }}</div>
                                 @enderror
                             </div>
-                            
                             <div>
                                 <input type='submit' class='btn btn-primary' value="Save" id="save"
                                     name="save" />

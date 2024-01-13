@@ -33,3 +33,14 @@
         <div data-i18n="Account Settings">DM</div>
     </a>
 </li>
+
+<li class="menu-header small text-uppercase">
+    <span class="menu-header-text">User</span>
+</li>
+
+<li class="menu-item {{ $menuUser ?? '' }}">
+    <a href="{{ route('user.index') }}" class="menu-link">
+        <i class="menu-icon tf-icons bx bx-user"></i>
+        <div data-i18n="Account Settings">User</div>
+    </a>
+</li>
